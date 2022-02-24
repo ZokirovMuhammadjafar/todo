@@ -1,0 +1,29 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment.html :: header('Home Page')"></head>
+<body class="myb">
+<section th:include="fragment.html :: navbar"></section>
+<div class="container">
+    <div class="row mx-3">
+        <form th:action="@{/todo/update}" th:method="post" th:object="${todo}">
+            <div class="form-group">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" type="text" id="title" name="title" th:value="*{title}" /> <!--th:field="*{title}"-->
+                <span style="color: red" th:errors="*{title}" ></span>
+            </div>
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <input class="form-control" type="text" id="description" name="description" th:value="*{description}" /> <!--th:field="*{description}"-->
+                <span style="color: red" th:errors="*{description}"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" name="id" th:value="*{id}" hidden/> <!--th:field="*{description}"-->
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="submit" value="save"/>
+            </div>
+        </form>
+    </div>
+</div>
+<section th:include="fragment.html::js-files"></section>
+</body>
+</html>

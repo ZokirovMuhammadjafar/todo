@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment.html :: header('Home Page')">
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="myb">
+<section th:include="fragment.html :: navbar"></section>
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo,iter : ${todos}">
+                <td th:text="${iter.count}"></td>
+                <td>
+                    <div style="text-decoration: line-through" th:if="${todo.completed}">
+                        <div th:utext="${todo.title}"></div>
+                    </div>
+                    <div th:unless="${todo.completed}">
+                        <div th:utext="${todo.title}"></div>
+                    </div>
+                </td>
+                <td>
+                    <div style="text-decoration: line-through" th:if="${todo.completed}">
+                        <div th:utext="${todo.description}"></div>
+                    </div>
+                    <div th:unless="${todo.completed}">
+                        <div th:utext="${todo.description}"></div>
+                    </div>
+                </td>
+                <td>
+                    <a th:href="@{'/todo/completed/'+${todo.id}}">
+                        <div th:if="${todo.completed}">
+                            <div>Completed</div>
+                            <a th:href="@{'/todo/delete/'+${todo.id}}" methods="post">🗑</a>
+                        </div>
+                        <!-- ELSE -->
+                        <div th:unless="${todo.completed}">
+                            <div>Uncompleted</div>
+                            <a th:href="@{'/todo/delete/'+${todo.id}}">🗑</a>
+                            <a th:href="@{'/todo/update/'+${todo.id}}">✏️</a>
+                        </div>
+                    </a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/todo/create}" class="btn btn-success">➕ Add</a>
+    </div>
+</div>
+
+<section th:include="fragment.html :: js-files"></section>
+</body>
+</html>
