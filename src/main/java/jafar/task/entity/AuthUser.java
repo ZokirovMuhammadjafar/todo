@@ -23,17 +23,16 @@ public class AuthUser {
     private String password;
 
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role_id", nullable = false)
-    private AuthRole role;
+//    @OneToOne(cascade = CascadeType.MERGE)
+//    @JoinColumn(name = "role_id", nullable = false)
+//    private AuthRole role;
 
     private boolean active = true;
 
-    public AuthUser(String username, String password, AuthRole role) {
+    public AuthUser(String username, String password) {
         this.id=null;
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     private boolean blocked;

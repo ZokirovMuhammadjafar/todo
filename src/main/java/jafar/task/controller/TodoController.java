@@ -35,9 +35,9 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @RequestMapping("")
+    @RequestMapping(value = "",method = RequestMethod.GET)
     public String todo(Model model) {
-//        AuthRole byId = repository.findByCode("ADMIN");
+//        AuthRole byId = re  pository.findByCode("ADMIN");
 //        AuthRole byId1 = repository.findByCode("MANAGER");
 //        AuthRole byId2= repository.findByCode("EMPLOYEE");
 //

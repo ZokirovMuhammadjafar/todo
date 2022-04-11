@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     public static final String[] WHITE_LIST = {
-            "/", "/auth/login",
+            "/", "/auth/login","/auth/register"
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {

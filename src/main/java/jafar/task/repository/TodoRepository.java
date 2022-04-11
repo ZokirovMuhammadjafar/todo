@@ -11,7 +11,7 @@ import java.util.List;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
 
-    @Query(value = "select * from data.todo  t where t.user_id = :id order by completed ",nativeQuery = true)
+    @Query(value = "select * from todo  t where t.user_id = :id order by completed ",nativeQuery = true)
     List<Todo> find(@Param("id")Long id);
 
     List<Todo> findAllByUserId(@Param("id")Long id);
