@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=data
-    username: postgres
-    password: jafar
+    url: jdbc:postgresql://ec2-23-20-224-166.compute-1.amazonaws.com:5432/des6hol5afnuot
+    username: rnqhfnfisldwhd
+    password: dd2ab6105ec2c7a264823c1950439b00b98a937bb4a88bafd2a4558a5c157b4d
   jpa:
     show-sql: true
     hibernate:
@@ -11,5 +11,4 @@ spring:
     open-in-view: false
   messages:
     always-use-message-format: true
-server:
-  port: 8080
+

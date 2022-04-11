@@ -51,9 +51,7 @@ public class TodoService {
     }
 
     public void update(TodoUpdateDto dto) {
-        Todo found = todoRepository.findById(dto.getId()).orElseThrow(() -> {
-            throw new UsernameNotFoundException("not found");
-        });
+        Todo found = todoRepository.findById(dto.getId()).orElseThrow(RuntimeException::new);
         if(!found.getUserId().equals(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()))throw new UsernameNotFoundException("not found");
         found.setDescription(dto.getDescription());
         found.setTitle(dto.getTitle());
@@ -62,9 +60,7 @@ public class TodoService {
     }
 
     public void complete(Long id) {
-        Todo found = todoRepository.findById(id).orElseThrow(() -> {
-            throw new UsernameNotFoundException("not found");
-        });
+        Todo found = todoRepository.findById(id).orElseThrow(RuntimeException::new);
         if(!found.getUserId().equals(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId()))throw new UsernameNotFoundException("not found");
         found.setCompleted(!found.isCompleted());
         todoRepository.save(found);
